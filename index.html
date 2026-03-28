@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarStop Coffee - Coffees</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <h1>StarStop Coffee</h1>
+    </div>
+    <nav>
+        <a href="home.html">Home</a> 
+        <a href="index.html" class="active">Coffees</a> 
+        <a href="teas.html">Teas & Refreshers</a>
+        <a href="pastries.html">Bakery</a>
+    </nav>
+</header>
+
+<div class="banner-container">
+    <img src="images/banner.jpg" class="promo-banner" alt="Promo Banner">
+</div>
+
+<div class="shop-container">
+    <section class="menu">
+        <h2>Handcrafted Beverages</h2>
+
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/latte.jpg" alt="Caffè Latte" class="menu-img" onerror="this.src='https://via.placeholder.com/100'">
+                </div>
+                <div class="details">
+                    <span class="name">Caffè Latte</span>
+                    <span class="price">₱185.00</span>
+                </div>
+            </div>
+            <input type="number" id="latteQty" min="0" value="0">
+        </div>
+
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/macchiato.jpg" alt="Caramel Macchiato" class="menu-img" onerror="this.src='https://via.placeholder.com/100'">
+                </div>
+                <div class="details">
+                    <span class="name">Caramel Macchiato</span>
+                    <span class="price">₱210.00</span>
+                </div>
+            </div>
+            <input type="number" id="macchiatoQty" min="0" value="0">
+        </div>
+
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/mocha.jpg" alt="White Chocolate Mocha" class="menu-img" onerror="this.src='https://via.placeholder.com/100'">
+                </div>
+                <div class="details">
+                    <span class="name">White Chocolate Mocha</span>
+                    <span class="price">₱195.00</span>
+                </div>
+            </div>
+            <input type="number" id="mochaQty" min="0" value="0">
+        </div>
+
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/frappe.jpg" alt="Java Chip Frappuccino" class="menu-img" onerror="this.src='https://via.placeholder.com/100'">
+                </div>
+                <div class="details">
+                    <span class="name">Java Chip Frappuccino®</span>
+                    <span class="price">₱225.00</span>
+                </div>
+            </div>
+            <input type="number" id="frappeQty" min="0" value="0">
+        </div>
+    </section>
+
+    <section class="cart-section">
+        <h2>Your Order</h2>
+        <div id="cart-items">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-display">
+                <h3>Total: ₱<span id="totalMain">0.00</span></h3>
+            </div>
+            <button class="order-btn" onclick="showDiscountWindow()">Place Order</button>
+        </div>
+    </section>
+</div>
+
+<div id="discountModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Senior Citizen Discount</h3>
+        <p>Please enter your age to check for a 12% discount:</p>
+        <input type="number" id="customerAge" placeholder="Age" min="0" max="120" class="age-input">
+        <div class="modal-buttons">
+            <button class="pay-btn" onclick="proceedToPayment()">Proceed</button>
+            <button class="cancel-btn" onclick="closeDiscountWindow()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h2 style="border: none; padding: 0;">StarStop Coffee</h2>
+            <p>Handcrafted for your day, every day.</p>
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="index.html">Coffees</a></li>
+                <li><a href="teas.html">Teas & Refreshers</a></li>
+                <li><a href="pastries.html">Bakery</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: customercare@starbucks.local</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Starbucks Manager Project. All rights reserved.</p>
+    </div>
+</footer>
+
+<div id="paymentModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Confirm Payment</h3>
+        <div class="receipt-breakdown">
+            <div class="receipt-line">
+                <span>Original Total:</span>
+                <strong>₱<span id="originalTotal">0.00</span></strong>
+            </div>
+            <div class="receipt-line discount-line">
+                <span>Discount (12%):</span>
+                <strong>- ₱<span id="discountAmount">0.00</span></strong>
+            </div>
+            <div class="receipt-line final-line">
+                <span>Final Payable:</span>
+                <strong>₱<span id="finalTotal">0.00</span></strong>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="pay-btn" onclick="processPayment()">Pay Now</button>
+            <button class="cancel-btn" onclick="closePaymentWindow()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast">Message</div>
+<script src="script.js"></script>
+</body>
+</html>

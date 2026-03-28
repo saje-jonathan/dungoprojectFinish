@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarStop Coffee - Bakery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <h1>StarStop Coffee</h1>
+    </div>
+    <nav>
+        <a href="home.html">Home</a> 
+        <a href="index.html">Coffees</a> 
+        <a href="teas.html">Teas & Refreshers</a>
+        <a href="pastries.html" class="active">Bakery</a>
+    </nav>
+</header>
+
+<div class="banner-container">
+    <img src="images/pastrybanner.jpg" class="promo-banner" alt="Promo Banner">
+</div>
+
+<div class="shop-container">
+    <section class="menu">
+        <h2>Freshly Baked Pastries</h2>
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/chocokwasont.jpg" alt="Chocolate Croissant" class="menu-img">
+                </div>
+                <div class="details">
+                    <span class="name">Chocolate Croissant</span>
+                    <span class="price">₱120.00</span>
+                </div>
+            </div>
+            <input type="number" id="qty-croissant" min="0" value="0">
+        </div>
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/muffin.jpg" alt="Blueberry Muffin" class="menu-img">
+                </div>
+                <div class="details">
+                    <span class="name">Blueberry Muffin</span>
+                    <span class="price">₱105.00</span>
+                </div>
+            </div>
+            <input type="number" id="qty-muffin" min="0" value="0">
+        </div>
+        <div class="item">
+            <div class="item-content">
+                <div class="image-container">
+                    <img src="images/dunat.jpg" alt="Glazed Doughnut" class="menu-img">
+                </div>
+                <div class="details">
+                    <span class="name">Glazed Doughnut</span>
+                    <span class="price">₱85.00</span>
+                </div>
+            </div>
+            <input type="number" id="qty-doughnut" min="0" value="0">
+        </div>
+    </section>
+
+    <section class="cart-section">
+        <h2>Your Order</h2>
+        <div id="cart-items">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total-display">
+                <h3>Total: ₱<span id="totalMain">0.00</span></h3>
+            </div>
+            <button class="order-btn" onclick="showDiscountWindow()">Place Order</button>
+        </div>
+    </section>
+</div>
+
+<!-- MISSING MODALS START HERE -->
+<div id="discountModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h3>Senior Citizen Discount</h3>
+        <p>Please enter your age to check for a 12% discount:</p>
+        <input type="number" id="customerAge" placeholder="Age" min="0" max="120" class="age-input">
+        <div class="modal-buttons">
+            <button class="pay-btn" onclick="proceedToPayment()">Proceed</button>
+            <button class="cancel-btn" onclick="closeDiscountWindow()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div id="paymentModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h3>Confirm Payment</h3>
+        <div class="receipt-breakdown">
+            <div class="receipt-line">
+                <span>Original Total:</span>
+                <strong>₱<span id="originalTotal">0.00</span></strong>
+            </div>
+            <div class="receipt-line discount-line">
+                <span>Discount (12%):</span>
+                <strong>- ₱<span id="discountAmount">0.00</span></strong>
+            </div>
+            <div class="receipt-line final-line">
+                <span>Final Payable:</span>
+                <strong>₱<span id="finalTotal">0.00</span></strong>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="pay-btn" onclick="processPayment()">Pay Now</button>
+            <button class="cancel-btn" onclick="closePaymentWindow()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-bottom">
+        <p>&copy; 2026 Starbucks Manager Project. All rights reserved.</p>
+    </div>
+</footer>
+
+<div id="toast" class="toast">Message</div>
+<!-- MISSING MODALS END HERE -->
+
+<script src="script.js"></script>
+</body>
+</html>

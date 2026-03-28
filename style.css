@@ -1,0 +1,544 @@
+/* =========================================
+   1. BASE & HEADER STYLES
+========================================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #f7f7f7;
+    margin: 0;
+    color: #1e3932; 
+}
+
+header {
+    background-color: #1e3932; 
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+nav {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 400; 
+    font-size: 1.1rem;
+    opacity: 0.6;      
+    transition: all 0.2s ease-in-out;
+}
+
+nav a:hover, nav a.active {
+    opacity: 1;
+    font-weight: bold;
+    border-bottom: 2px solid #007042;
+    padding-bottom: 5px;
+}
+
+/* =========================================
+   2. MAIN SHOP LAYOUT (SIDE-BY-SIDE)
+========================================= */
+.shop-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.menu {
+    flex: 1;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.cart-section {
+    width: 350px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 40px; 
+}
+
+h2 {
+    border-bottom: 1px solid #d4e9e2;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+/* =========================================
+   3. MENU ITEMS
+========================================= */
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin: 15px 0;
+    padding: 15px; 
+    border: 1px solid #f2f2f2; 
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.item:hover {
+    background-color: #f9f9f9;
+}
+
+.item-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+.image-container {
+    width: 80px; 
+    height: 80px; 
+    flex-shrink: 0;
+}
+
+.menu-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px; 
+    border: 1px solid #d4e9e2;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1.1rem; 
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 1rem; 
+    color: #007042; 
+    font-weight: bold;
+}
+
+/* =========================================
+   4. NUMBER INPUTS
+========================================= */
+input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border: 2px solid #007042;
+}
+
+/* Hide default up/down arrows specifically on the age input */
+#customerAge::-webkit-outer-spin-button,
+#customerAge::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#customerAge {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* =========================================
+   5. CART STYLES
+========================================= */
+#cart-items {
+    min-height: 120px;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #e0e0e0;
+    padding-bottom: 10px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.empty-cart {
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    margin-top: 40px;
+}
+
+.total-display h3 {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+    font-size: 1.3rem;
+}
+
+#totalMain {
+    color: #007042;
+}
+
+button.order-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #007042; 
+    color: white;
+    border: none;
+    border-radius: 50px; 
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button.order-btn:hover {
+    background-color: #005935;
+}
+
+/* =========================================
+   6. MODALS (Popups)
+========================================= */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1e3932; 
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #007042;
+    padding-bottom: 15px;
+}
+
+.age-input {
+    width: 120px !important;
+    padding: 10px !important;
+    margin: 15px 0 !important;
+    font-size: 1.1rem !important;
+}
+
+/* Receipt Breakdown */
+.receipt-breakdown {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.receipt-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.discount-line {
+    color: #ff9d9d; 
+}
+
+.final-line {
+    border-top: 1px dashed #007042;
+    padding-top: 15px;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d4e9e2;
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.pay-btn, .cancel-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.pay-btn {
+    background-color: #007042; 
+    color: white;
+}
+
+.pay-btn:hover {
+    background-color: #005935;
+}
+
+.cancel-btn {
+    background-color: #f7f7f7;
+    color: #1e3932;
+}
+
+.cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* =========================================
+   7. TOAST NOTIFICATIONS
+========================================= */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #007042;
+    color: #fff;
+    text-align: center;
+    border-radius: 50px;
+    padding: 16px;
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    bottom: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+
+.toast.error {
+    background-color: #d13239; 
+}
+
+/* =========================================
+   8. FAQ ACCORDION STYLES
+========================================= */
+.faq-section {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 60vh; 
+}
+
+.faq-wrapper {
+    width: 100%;
+    max-width: 800px;
+    background-color: white; 
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.faq-wrapper h2 {
+    color: #1e3932;
+    border-bottom: 2px solid #007042;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.faq-box {
+    background-color: #f9f9f9;
+    border: 1px solid #d4e9e2;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-box summary {
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #1e3932;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+    
+    /* Forces default arrows to hide across all browsers */
+    list-style: none;
+    list-style-type: none;
+}
+
+.faq-box summary::marker,
+.faq-box summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-box summary:hover {
+    background-color: #d4e9e2;
+}
+
+/* Custom (+) and (−) Indicators */
+.faq-box summary::after {
+    content: '+';
+    color: #007042;
+    font-size: 1.5rem;
+    font-weight: normal;
+    transition: transform 0.3s;
+}
+
+.faq-box[open] summary::after {
+    content: '−';
+    color: #007042;
+}
+
+.faq-answer {
+    padding: 0 20px 20px 20px;
+    color: #4d4d4d;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    border-top: 1px dashed #d4e9e2;
+    margin-top: 5px;
+    padding-top: 15px;
+}
+
+/* =========================================
+   9. FOOTER STYLES
+========================================= */
+.site-footer {
+    background-color: #1e3932; 
+    color: #f7f7f7;
+    padding: 50px 20px 20px;
+    margin-top: 60px; 
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 30px;
+    border-bottom: 1px solid #007042;
+    padding-bottom: 30px;
+}
+
+.footer-brand h2 {
+    color: white;
+    margin-bottom: 10px;
+    border: none;
+    padding: 0;
+}
+
+.footer-brand p {
+    color: #d4e9e2;
+    font-size: 0.95rem;
+    max-width: 250px;
+    line-height: 1.5;
+}
+
+.footer-links h3, .footer-contact h3 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #d4e9e2;
+    text-decoration: none;
+    transition: color 0.2s;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    color: #00e676;
+    opacity: 1;
+}
+
+.footer-contact p {
+    margin: 8px 0;
+    color: #d4e9e2;
+    font-size: 0.95rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   10. BANNER STYLES
+========================================= */
+.banner-container {
+    max-width: 1000px; /* Matches your shop container */
+    margin: 30px auto 0 auto; 
+    padding: 0 20px;
+}
+
+.promo-banner {
+    width: 100%;
+    height: 150px; /* This makes it a nice, thin strip again */
+    object-fit: cover; /* This crops the image so it doesn't look squished */
+    object-position: center bottom; /* This forces the crop to look at the bottom where the coffee cup is! */
+    border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+    display: block;
+}
